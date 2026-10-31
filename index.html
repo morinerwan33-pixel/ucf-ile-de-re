@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>UCF - Déplacement île de Ré 2027</title>
+<link rel="icon" id="fav" type="image/png" href="data:,">
 <style>
 :root{--bg:#f4f6f4;--card:#fff;--ink:#1c2420;--mut:#5d6b64;--line:#dfe5e1;--pri:#1f7a4d;--pri-ink:#fff;--pri-soft:#e3f2ea;--warn:#b45309;--warn-soft:#fdf0dc;--bad:#b42318;--bad-soft:#fde8e6;--ok:#15803d;--ok-soft:#e2f4e8}
 @media (prefers-color-scheme:dark){:root{--bg:#121714;--card:#1b231e;--ink:#e8efe9;--mut:#9aa9a0;--line:#2c3830;--pri:#3fb77a;--pri-ink:#0b140f;--pri-soft:#1d3327;--warn:#f0b35a;--warn-soft:#3a2d14;--bad:#f28b82;--bad-soft:#3b1f1c;--ok:#6fd695;--ok-soft:#19301f}}
@@ -13,6 +14,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-app
 header.top{background:var(--pri);color:var(--pri-ink);padding:14px 16px}
 header.top .in{max-width:1100px;margin:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 header.top h1{font-size:1.1rem;margin:0;flex:1}
+header.top .logo{width:44px;height:44px;border-radius:50%;flex:none;background:#fff}
 header.top a,header.top button.lnk{color:var(--pri-ink);background:none;border:0;font:inherit;text-decoration:underline;cursor:pointer;padding:0}
 main{max-width:1100px;margin:0 auto;padding:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
@@ -63,6 +65,7 @@ code{background:var(--pri-soft);padding:1px 5px;border-radius:4px;word-break:bre
 </head>
 <body>
 <header class="top"><div class="in">
+  <img class="logo" id="logo" src="data:," alt="Logo UCF">
   <h1 id="ttl">UCF - Déplacement tournoi île de Ré</h1>
   <span id="nav"></span>
 </div></header>
@@ -70,6 +73,7 @@ code{background:var(--pri-soft);padding:1px 5px;border-radius:4px;word-break:bre
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
+<script>(function(){var l=(window.UCF_CONFIG||{}).LOGO;if(l){document.getElementById("logo").src=l;document.getElementById("fav").href=l}else{document.getElementById("logo").style.display="none"}})();</script>
 <script>
 "use strict";
 /* ============================ utilitaires ============================ */
