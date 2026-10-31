@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>UCF - Déplacement île de Ré 2027</title>
+<style>
+:root{--bg:#f4f6f4;--card:#fff;--ink:#1c2420;--mut:#5d6b64;--line:#dfe5e1;--pri:#1f7a4d;--pri-ink:#fff;--pri-soft:#e3f2ea;--warn:#b45309;--warn-soft:#fdf0dc;--bad:#b42318;--bad-soft:#fde8e6;--ok:#15803d;--ok-soft:#e2f4e8}
+@media (prefers-color-scheme:dark){:root{--bg:#121714;--card:#1b231e;--ink:#e8efe9;--mut:#9aa9a0;--line:#2c3830;--pri:#3fb77a;--pri-ink:#0b140f;--pri-soft:#1d3327;--warn:#f0b35a;--warn-soft:#3a2d14;--bad:#f28b82;--bad-soft:#3b1f1c;--ok:#6fd695;--ok-soft:#19301f}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header.top{background:var(--pri);color:var(--pri-ink);padding:14px 16px}
+header.top .in{max-width:1100px;margin:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header.top h1{font-size:1.1rem;margin:0;flex:1}
+header.top a,header.top button.lnk{color:var(--pri-ink);background:none;border:0;font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.card h2{margin:0 0 8px;font-size:1.15rem}
+.card h3{margin:16px 0 6px;font-size:1rem}
+.mut{color:var(--mut);font-size:.9rem}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:1.6rem;line-height:1.1}
+.kpi span{color:var(--mut);font-size:.85rem}
+.kpi.warn b{color:var(--warn)}.kpi.bad b{color:var(--bad)}.kpi.ok b{color:var(--ok)}
+label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 3px}
+label.chk{display:flex;gap:8px;align-items:flex-start;font-weight:400}
+label.chk input{margin-top:5px;width:auto}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--card);color:var(--ink)}
+textarea{min-height:70px}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--pri);outline-offset:1px}
+button,.btn{display:inline-block;padding:10px 16px;border-radius:8px;border:1px solid var(--pri);background:var(--pri);color:var(--pri-ink);font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+button.sec,.btn.sec{background:transparent;color:var(--pri)}
+button.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+button.sm{padding:4px 10px;font-size:.85rem}
+button:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row.end{justify-content:flex-end}
+.tabs{display:flex;gap:4px;overflow-x:auto;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:var(--mut);border-radius:0;padding:10px 12px;white-space:nowrap}
+.tabs button.on{color:var(--pri);border-color:var(--pri)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.8rem;color:var(--mut);white-space:nowrap}
+tr.click{cursor:pointer}tr.click:hover{background:var(--pri-soft)}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.78rem;font-weight:600;background:var(--pri-soft);color:var(--pri);margin:1px}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}.tag.bad{background:var(--bad-soft);color:var(--bad)}.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.msg{padding:10px 12px;border-radius:8px;margin:10px 0}
+.msg.err{background:var(--bad-soft);color:var(--bad)}.msg.okk{background:var(--ok-soft);color:var(--ok)}.msg.info{background:var(--pri-soft)}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:16px;z-index:10}
+.modal{background:var(--card);border-radius:12px;max-width:760px;width:100%;padding:16px;margin:auto}
+.modal h2{margin-top:0}
+.cols{display:grid;gap:0 12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.hp{position:absolute;left:-9999px}
+.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:var(--pri)}
+.msgbox{border-top:1px solid var(--line);padding:10px 0}.msgbox:first-child{border:0}
+code{background:var(--pri-soft);padding:1px 5px;border-radius:4px;word-break:break-all}
+@media print{header.top,.tabs,button{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <h1 id="ttl">UCF - Déplacement tournoi île de Ré</h1>
+  <span id="nav"></span>
+</div></header>
+<main id="app"><p class="mut">Chargement…</p></main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+"use strict";
+/* ============================ utilitaires ============================ */
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const eur = n => (Number(n) || 0).toLocaleString("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 2 });
+const fdate = d => d ? new Date(d.length <= 10 ? d + "T12:00:00" : d).toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "long", year: "numeric" }) : "";
+const fdt = d => d ? new Date(d).toLocaleString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "";
+const num = v => (v === "" || v == null) ? null : Number(v);
+const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+
+const CFG = window.UCF_CONFIG || {};
+const CATS = ["U10-U11", "U12-U13"];
+const REGIMES = ["Standard", "Sans porc", "Végétarien", "Sans gluten", "Autre (voir remarques)"];
+const TAILLES = ["6 ans", "8 ans", "10 ans", "12 ans", "14 ans", "S", "M", "L", "XL", "XXL"];
+const STATUTS = { en_attente: "En attente", a_verifier: "À vérifier", valide: "Validé", liste_attente: "Liste d'attente", desiste: "Désisté" };
+const STATUT_CLS = { en_attente: "", a_verifier: "warn", valide: "ok", liste_attente: "warn", desiste: "bad" };
+const ROLES = ["Éducateur", "Dirigeant", "Parent", "Bénévole"];
+const ERRS = {
+  INSCRIPTIONS_FERMEES: "Les inscriptions sont fermées.",
+  CHAMPS_OBLIGATOIRES: "Merci de remplir tous les champs obligatoires.",
+  AUTORISATION_REQUISE: "L'autorisation parentale est nécessaire pour inscrire l'enfant.",
+  ENGAGEMENT_REQUIS: "Merci de confirmer l'engagement de participation financière.",
+  DOUBLON: "Cet enfant est déjà inscrit. Utilisez le lien personnel reçu lors de l'inscription pour modifier la fiche, ou contactez le club.",
+  REFUSE: "Demande refusée."
+};
+const errMsg = e => { const m = (e && e.message) || String(e); for (const k in ERRS) if (m.includes(k)) return ERRS[k]; return "Erreur : " + m; };
+
+const configured = CFG.SUPABASE_URL && !CFG.SUPABASE_URL.includes("VOTRE");
+let sb = null;
+if (configured) sb = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_KEY);
+
+const S = { settings: null, regs: [], adults: [], vehicles: [], lodgings: [], tasks: [], messages: [], members: [], me: null, isAdmin: false, tab: "dash", filter: { q: "", cat: "", statut: "" }, msgSujet: "" };
+const app = html => { $("#app").innerHTML = html; };
+const notice = (cls, t) => `<div class="msg ${cls}">${t}</div>`;
+
+/* ============================ routage ============================ */
+const params = new URLSearchParams(location.search);
+async function start() {
+  if (!configured) {
+    app(`<div class="card"><h2>Configuration requise</h2><p>Ouvrez <code>config.js</code> et renseignez l'URL et la clé de votre projet Supabase (voir GUIDE.md).</p></div>`);
+    return;
+  }
+  if (params.has("ca")) return caStart();
+  if (params.get("t")) return parentStart(params.get("t"));
+  return publicHome();
+}
+function nav(html) { $("#nav").innerHTML = html; }
+
+/* ============================ côté familles ============================ */
+const FIELDS_PARENT = [
+  { k: "nom", l: "Nom de l'enfant", t: "text", req: 1 },
+  { k: "prenom", l: "Prénom de l'enfant", t: "text", req: 1 },
+  { k: "categorie", l: "Catégorie", t: "select", o: CATS, req: 1 },
+  { k: "date_naissance", l: "Date de naissance", t: "date", req: 1 },
+  { k: "resp_nom", l: "Nom et prénom du responsable légal", t: "text", req: 1 },
+  { k: "resp_tel", l: "Téléphone en cas d'urgence", t: "tel", req: 1 },
+  { k: "resp_email", l: "E-mail du responsable légal", t: "email", req: 1 },
+  { k: "allergies", l: "Allergies, traitements ou informations médicales", t: "textarea" },
+  { k: "regime", l: "Régime alimentaire", t: "select", o: REGIMES, req: 1 },
+  { k: "tee_shirt", l: "Taille de tee-shirt", t: "select", o: TAILLES, req: 1 },
+  { k: "remarques", l: "Remarques", t: "textarea" }
+];
+const FIELDS_ACC = [
+  { k: "acc_adultes", l: "Nombre d'adultes qui viendront (parents accompagnants)", t: "number", min: 0 },
+  { k: "acc_enfants", l: "Nombre d'autres enfants (frères et sœurs non joueurs)", t: "number", min: 0 },
+  { k: "acc_conducteur", l: "Je peux conduire un véhicule", t: "bool" },
+  { k: "acc_places", l: "Places libres dans ma voiture", t: "number", min: 0 }
+];
+
+async function publicHome() {
+  nav("");
+  const { data: st, error } = await sb.rpc("get_public_settings");
+  if (error) return app(notice("err", "Impossible de joindre le serveur : " + esc(error.message)));
+  S.settings = st;
+  $("#ttl").textContent = st.tournoi || "Déplacement tournoi";
+  const mine = lsGet("ucf_tokens"); const tokens = mine ? JSON.parse(mine) : [];
+  app(`
+  <div class="card">
+    <h2>${esc(st.tournoi)}</h2>
+    <p>${esc(st.message_accueil || "")}</p>
+    <div class="grid">
+      <div><b>Dates</b><br>${esc(fdate(st.date_depart))} au ${esc(fdate(st.date_retour))}</div>
+      <div><b>Lieu</b><br>${esc(st.lieu || "")}</div>
+      <div><b>Participation demandée</b><br>${eur(st.participation)} par enfant joueur<br><span class="mut">Hébergement et repas du tournoi inclus. Accompagnants : hébergement à leur charge.</span></div>
+      ${st.date_limite ? `<div><b>Date limite d'inscription</b><br>${esc(fdate(st.date_limite))}</div>` : ""}
+    </div>
+    ${st.contact_club ? `<p class="mut">Une question : ${esc(st.contact_club)}</p>` : ""}
+  </div>
+  ${tokens.length ? `<div class="card"><h2>Vos fiches sur cet appareil</h2>${tokens.map(x => `<p><a class="btn sec" href="?t=${esc(x.t)}">${esc(x.n)}</a></p>`).join("")}</div>` : ""}
+  ${st.inscriptions_ouvertes ? `<div class="card"><h2>Inscrire mon enfant</h2><div id="regForm">${registerForm()}</div></div>` : notice("info", "Les inscriptions sont actuellement fermées.")}
+  <p class="mut">Vous avez déjà inscrit votre enfant ? Utilisez le lien personnel reçu à l'inscription. Membres du CA : <a href="?ca=1">espace CA</a>.</p>`);
+  if (st.inscriptions_ouvertes) $("#regForm form").onsubmit = submitRegistration;
+}
+
+function registerForm() {
+  return `<form novalidate>
+    <div class="cols">${FIELDS_PARENT.map(f => fieldHTML(f, f.k === "regime" ? "Standard" : "")).join("")}</div>
+    <h3>Parents accompagnants (facultatif)</h3>
+    <p class="mut">Hébergement des adultes non inclus. Ces informations servent à organiser le covoiturage.</p>
+    <div class="cols">${FIELDS_ACC.map(f => fieldHTML(f, f.t === "number" ? 0 : false)).join("")}</div>
+    <h3>Autorisations</h3>
+    <label class="chk"><input type="checkbox" id="f_autorisation"> <span>J'autorise mon enfant à participer au déplacement du vendredi 14 au lundi 17 mai 2027 et les encadrants à prendre toute mesure médicale urgente. *</span></label>
+    <label class="chk"><input type="checkbox" id="f_photos"> <span>J'autorise le club à utiliser les photos de mon enfant prises pendant le séjour.</span></label>
+    <label class="chk"><input type="checkbox" id="f_engagement"> <span>Je m'engage à régler la participation demandée par enfant. *</span></label>
+    <input class="hp" id="f_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div id="regMsg"></div>
+    <p><button type="submit">Envoyer l'inscription</button></p>
+    <p class="mut">La fiche sanitaire et la licence/pièce d'identité seront à remettre au club séparément. Les données sont utilisées uniquement pour ce déplacement.</p>
+  </form>`;
+}
+
+async function submitRegistration(ev) {
+  ev.preventDefault();
+  const form = ev.target, box = $("#regMsg"), btn = form.querySelector("button[type=submit]");
+  const p = collect(FIELDS_PARENT.concat(FIELDS_ACC));
+  p.autorisation = $("#f_autorisation").checked; p.photos = $("#f_photos").checked; p.engagement = $("#f_engagement").checked;
+  p.website = $("#f_website").value;
+  for (const f of FIELDS_PARENT) if (f.req && !p[f.k]) return box.innerHTML = notice("err", `Champ obligatoire : ${esc(f.l)}`);
+  if (!/^\S+@\S+\.\S+$/.test(p.resp_email)) return box.innerHTML = notice("err", "Adresse e-mail invalide.");
+  if (!p.autorisation || !p.engagement) return box.innerHTML = notice("err", "Les deux cases marquées d'une étoile sont nécessaires.");
+  btn.disabled = true;
+  const { data, error } = await sb.rpc("register_child", { p });
+  btn.disabled = false;
+  if (error) return box.innerHTML = notice("err", esc(errMsg(error)));
+  const list = JSON.parse(lsGet("ucf_tokens") || "[]"); list.push({ t: data.token, n: `${p.prenom} ${p.nom}` }); lsSet("ucf_tokens", JSON.stringify(list));
+  const link = location.origin + location.pathname + "?t=" + data.token;
+  const mail = `mailto:${encodeURIComponent(p.resp_email)}?subject=${encodeURIComponent("Lien de suivi - inscription " + p.prenom)}&body=${encodeURIComponent("Voici le lien personnel pour consulter ou modifier la fiche de " + p.prenom + " :\n" + link)}`;
+  $("#regForm").innerHTML = notice("okk", `<b>Inscription enregistrée pour ${esc(p.prenom)}.</b> Le CA va la vérifier.`) +
+    `<p><b>Conservez ce lien personnel</b> (il permet de modifier la fiche et de suivre le statut) :</p><p><code>${esc(link)}</code></p>
+     <div class="row"><button type="button" id="cp">Copier le lien</button><a class="btn sec" href="${mail}">Me l'envoyer par e-mail</a><a class="btn sec" href="${esc(link)}">Ouvrir ma fiche</a></div>`;
+  $("#cp").onclick = () => navigator.clipboard && navigator.clipboard.writeText(link).then(() => $("#cp").textContent = "Copié");
+}
+
+async function parentStart(token) {
+  nav(`<a href="${location.pathname}">Accueil</a>`);
+  const [{ data: st }, { data: r, error }] = await Promise.all([sb.rpc("get_public_settings"), sb.rpc("get_registration", { t: token })]);
+  S.settings = st || {}; $("#ttl").textContent = (st && st.tournoi) || "Déplacement tournoi";
+  if (error || !r) return app(notice("err", "Lien introuvable. Vérifiez qu'il est complet ou contactez le club."));
+  const missing = [];
+  if (!r.doc_sanitaire) missing.push("fiche sanitaire");
+  if (!r.doc_licence) missing.push("licence / pièce d'identité");
+  const reste = Number(r.montant_du) - Number(r.montant_paye);
+  const closed = r.statut === "desiste";
+  app(`
+  <div class="card">
+    <h2>${esc(r.prenom)} ${esc(r.nom)} <span class="tag ${STATUT_CLS[r.statut]}">${STATUTS[r.statut]}</span></h2>
+    ${r.statut === "a_verifier" ? notice("info", "La catégorie ne correspond pas à l'âge saisi : le CA vérifiera avec vous.") : ""}
+    ${r.statut === "liste_attente" ? notice("info", "Votre enfant est sur liste d'attente.") : ""}
+    <div class="grid">
+      <div><b>Participation</b><br>${eur(r.montant_du)} dus, ${eur(r.montant_paye)} réglés${reste > 0 ? `, <b>reste ${eur(reste)}</b>` : " : à jour"}</div>
+      <div><b>Documents à remettre au club</b><br>${missing.length ? `<span class="tag warn">manquant : ${esc(missing.join(", "))}</span>` : `<span class="tag ok">complets</span>`}</div>
+      <div><b>Dates</b><br>${esc(fdate(st.date_depart))} au ${esc(fdate(st.date_retour))}</div>
+    </div>
+  </div>
+  <div class="card"><h2>Modifier la fiche</h2>
+    ${closed ? notice("info", "Cette inscription est annulée. Contactez le club pour la rétablir.") : ""}
+    <form novalidate id="pf"><fieldset ${closed ? "disabled" : ""} style="border:0;padding:0;margin:0">
+      <div class="cols">${FIELDS_PARENT.map(f => fieldHTML(f, r[f.k])).join("")}</div>
+      <h3>Parents accompagnants</h3>
+      <div class="cols">${FIELDS_ACC.map(f => fieldHTML(f, r[f.k])).join("")}</div>
+      <label class="chk"><input type="checkbox" id="f_photos" ${r.photos ? "checked" : ""}> <span>J'autorise le club à utiliser les photos de mon enfant prises pendant le séjour.</span></label>
+      <div id="pmsg"></div>
+      <div class="row"><button type="submit">Enregistrer</button></div>
+    </fieldset></form>
+  </div>
+  ${closed ? "" : `<div class="card"><h2>Annuler l'inscription</h2><p class="mut">À utiliser si votre enfant ne participe finalement pas.</p><button class="danger" id="wd">Retirer mon enfant</button></div>`}`);
+  $("#pf").onsubmit = async ev => {
+    ev.preventDefault();
+    const p = collect(FIELDS_PARENT.concat(FIELDS_ACC)); p.photos = $("#f_photos").checked;
+    for (const f of FIELDS_PARENT) if (f.req && !p[f.k]) return $("#pmsg").innerHTML = notice("err", `Champ obligatoire : ${esc(f.l)}`);
+    const { error } = await sb.rpc("update_registration", { t: token, p });
+    $("#pmsg").innerHTML = error ? notice("err", esc(errMsg(error))) : notice("okk", "Modifications enregistrées.");
+  };
+  const wd = $("#wd");
+  if (wd) wd.onclick = async () => {
+    if (!confirm("Retirer définitivement cet enfant du déplacement ?")) return;
+    const { error } = await sb.rpc("withdraw_registration", { t: token });
+    if (error) alert(errMsg(error)); else parentStart(token);
+  };
+}
+
+/* ============================ champs génériques ============================ */
+function optsOf(f) { return (typeof f.o === "function" ? f.o() : (f.o || [])).map(o => typeof o === "object" ? o : { v: o, l: o }); }
+function fieldHTML(f, v) {
+  const id = "f_" + f.k, req = f.req ? " *" : "";
+  if (f.t === "bool") return `<label class="chk"><input type="checkbox" id="${id}" ${v ? "checked" : ""}> <span>${esc(f.l)}</span></label>`;
+  let inp;
+  if (f.t === "select") inp = `<select id="${id}">${f.noblank ? "" : `<option value="">-</option>`}${optsOf(f).map(o => `<option value="${esc(o.v)}" ${String(v ?? "") === String(o.v) ? "selected" : ""}>${esc(o.l)}</option>`).join("")}</select>`;
+  else if (f.t === "textarea") inp = `<textarea id="${id}">${esc(v)}</textarea>`;
+  else inp = `<input id="${id}" type="${f.t === "tel" ? "tel" : f.t}" value="${esc(v)}" ${f.min != null ? `min="${f.min}"` : ""} ${f.t === "number" ? 'step="any"' : ""} ${f.t === "email" ? 'autocomplete="email"' : ""}>`;
+  return `<div><label for="${id}">${esc(f.l)}${req}</label>${inp}</div>`;
+}
+function collect(fields) {
+  const o = {};
+  for (const f of fields) {
+    const el = $("#f_" + f.k); if (!el) continue;
+    if (f.t === "bool") o[f.k] = el.checked;
+    else if (f.t === "number") o[f.k] = num(el.value);
+    else o[f.k] = el.value.trim() === "" ? null : el.value.trim();
+  }
+  return o;
+}
+
+/* ============================ espace CA : connexion ============================ */
+async function caStart() {
+  $("#ttl").textContent = "Espace CA - " + (CFG.CLUB || "UCF");
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) return loginView();
+  S.me = session.user.email;
+  const { data: mem } = await sb.from("ca_members").select("*").order("nom");
+  const mine = (mem || []).find(m => (m.email || "").toLowerCase() === S.me.toLowerCase());
+  if (!mine) return app(`<div class="card"><h2>Accès non autorisé</h2><p>L'adresse <b>${esc(S.me)}</b> n'est pas dans la liste des membres du CA. Demandez à un administrateur de l'ajouter.</p><button id="lo">Se déconnecter</button></div>`), $("#lo").onclick = logout;
+  S.members = mem; S.isAdmin = !!mine.is_admin;
+  nav(`<span class="mut" style="color:inherit">${esc(S.me)}</span> · <button class="lnk" id="lo">Déconnexion</button> · <a href="${location.pathname}">Site public</a>`);
+  $("#lo").onclick = logout;
+  await loadAll(); caRender();
+  setInterval(() => { if (S.tab === "msg" && !document.querySelector(".modal-bg")) refreshMessages(); }, 30000);
+}
+async function logout() { await sb.auth.signOut(); location.href = location.pathname + "?ca=1"; }
+function loginView(msg) {
+  nav(`<a href="${location.pathname}">Site public</a>`);
+  app(`<div class="card" style="max-width:480px;margin:auto"><h2>Connexion membres du CA</h2>
+    <p class="mut">Saisissez votre e-mail : vous recevrez un lien de connexion (sans mot de passe).</p>
+    ${msg || ""}
+    <form id="lf"><label for="em">Adresse e-mail</label><input id="em" type="email" required autocomplete="email">
+    <p><button type="submit">Recevoir le lien</button></p></form>
+    <div id="codeBox" hidden><label for="cd">Code reçu par e-mail (si votre message contient un code)</label><input id="cd" inputmode="numeric" autocomplete="one-time-code">
+    <p><button id="cb" class="sec">Valider le code</button></p></div></div>`);
+  $("#lf").onsubmit = async ev => {
+    ev.preventDefault();
+    const email = $("#em").value.trim();
+    const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname + "?ca=1", shouldCreateUser: true } });
+    if (error) return loginView(notice("err", esc(error.message)));
+    loginView(notice("okk", `Lien envoyé à ${esc(email)}. Ouvrez-le sur cet appareil. Pensez à vérifier les courriers indésirables.`));
+    $("#em").value = email; $("#codeBox").hidden = false;
+    $("#cb").onclick = async () => {
+      const { error: e2 } = await sb.auth.verifyOtp({ email, token: $("#cd").value.trim(), type: "email" });
+      if (e2) alert(e2.message); else location.reload();
+    };
+  };
+}
+
+/* ============================ chargement des données ============================ */
+async function loadAll() {
+  const q = (t, o) => sb.from(t).select("*").order(o, { ascending: true });
+  const [a, b, c, d, e, f, g] = await Promise.all([
+    sb.from("settings").select("*").eq("id", 1).single(),
+    q("registrations", "created_at"), q("adults", "nom"), q("vehicles", "code"), q("lodgings", "code"), q("tasks", "jours_avant"),
+    sb.from("messages").select("*").order("created_at", { ascending: false }).limit(300)
+  ]);
+  for (const r of [a, b, c, d, e, f, g]) if (r.error) { app(notice("err", "Erreur de lecture : " + esc(r.error.message))); throw r.error; }
+  S.settings = a.data; S.regs = b.data; S.adults = c.data; S.vehicles = d.data; S.lodgings = e.data;
+  S.tasks = f.data.sort((x, y) => (y.jours_avant ?? -999) - (x.jours_avant ?? -999)); S.messages = g.data;
+}
+async function refreshMessages() {
+  const { data } = await sb.from("messages").select("*").order("created_at", { ascending: false }).limit(300);
+  if (data) { S.messages = data; if (S.tab === "msg") caRender(); }
+}
+
+/* ============================ calculs ============================ */
+const active = () => S.regs.filter(r => r.statut !== "desiste");
+function ageSaison(r) { return r.date_naissance ? S.settings.saison - new Date(r.date_naissance).getFullYear() : null; }
+function ageOk(r) { const a = ageSaison(r); return r.categorie === "U10-U11" ? [10, 11].includes(a) : r.categorie === "U12-U13" ? [12, 13].includes(a) : false; }
+function alerts(r) {
+  const out = [];
+  if (!ageOk(r)) out.push("âge/catégorie");
+  const dup = S.regs.filter(x => x.statut !== "desiste" && x.nom.toLowerCase() === r.nom.toLowerCase() && x.prenom.toLowerCase() === r.prenom.toLowerCase()).length > 1;
+  if (dup) out.push("doublon");
+  return out;
+}
+const personsIn = v => S.regs.filter(r => r.vehicule_id === v.id && r.statut !== "desiste").length +
+  S.adults.filter(a => a.vehicule_id === v.id && a.presence).reduce((s, a) => s + (a.nb_adultes || 0) + (a.nb_enfants || 0), 0);
+const bedsIn = l => S.regs.filter(r => r.hebergement_id === l.id && r.statut !== "desiste").length +
+  S.adults.filter(a => a.hebergement_id === l.id && a.presence).reduce((s, a) => s + (a.nb_adultes || 0), 0);
+const vehCost = v => ((v.km_ar || 0) * (v.conso || 0) / 100 * (v.prix_carburant || 0)) + (v.peages || 0) + (v.pont || 0) + (v.location || 0);
+const dueDate = t => { if (t.jours_avant == null || !S.settings.date_depart) return null; const d = new Date(S.settings.date_depart + "T12:00:00"); d.setDate(d.getDate() - t.jours_avant); return d; };
+const lateTask = t => { const d = dueDate(t); return d && t.statut !== "Fait" && d < new Date(); };
+
+/* ============================ rendu CA ============================ */
+const TABS = [["dash", "Tableau de bord"], ["kids", "Enfants"], ["adults", "Accompagnateurs"], ["veh", "Transport"], ["lod", "Hébergement"], ["tasks", "Tâches"], ["msg", "Échanges"], ["set", "Réglages"]];
+function caRender() {
+  const tabs = `<div class="tabs">${TABS.map(([k, l]) => `<button data-t="${k}" class="${S.tab === k ? "on" : ""}">${l}${k === "msg" ? "" : ""}</button>`).join("")}</div>`;
+  bindTab = () => {};
+  const body = { dash: dashView, kids: kidsView, adults: adultsView, veh: vehView, lod: lodView, tasks: tasksView, msg: msgView, set: setView }[S.tab]();
+  app(tabs + body);
+  document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => { S.tab = b.dataset.t; caRender(); });
+  bindTab();
+}
+let bindTab = () => {};
+
+function kpi(v, l, cls = "") { return `<div class="kpi ${cls}"><b>${v}</b><span>${l}</span></div>`; }
+
+function dashView() {
+  const A = active(), n = A.length, st = S.settings;
+  const by = c => A.filter(r => r.categorie === c).length;
+  const miss = k => A.filter(r => !r[k]).length;
+  const due = A.reduce((s, r) => s + Number(r.montant_du), 0), paid = A.reduce((s, r) => s + Number(r.montant_paye), 0);
+  const places = S.vehicles.reduce((s, v) => s + (v.places || 0), 0);
+  const personnes = n + S.adults.filter(a => a.presence).reduce((s, a) => s + (a.nb_adultes || 0) + (a.nb_enfants || 0), 0);
+  const beds = S.lodgings.reduce((s, l) => s + (l.couchages || 0), 0);
+  const noveh = A.filter(r => !r.vehicule_id).length;
+  const nolod = A.filter(r => !r.hebergement_id).length;
+  const done = S.tasks.filter(t => t.statut === "Fait").length, late = S.tasks.filter(lateTask).length;
+  const transport = S.vehicles.filter(v => v.pris_en_charge === "Club").reduce((s, v) => s + vehCost(v), 0);
+  const inscr = n * Number(st.tarif);
+  const jours = Math.ceil((new Date(st.date_depart + "T12:00:00") - new Date()) / 864e5);
+  const alertes = A.filter(r => alerts(r).length);
+  const accomp = A.reduce((s, r) => s + (r.acc_adultes || 0), 0);
+  return `<h2 style="margin-top:0">Départ dans ${jours} jours (${esc(fdate(st.date_depart))})</h2>
+  <div class="kpis">
+    ${kpi(n, "enfants inscrits (hors désistés)")}
+    ${kpi(by("U10-U11"), "U10-U11")}${kpi(by("U12-U13"), "U12-U13")}
+    ${kpi(A.filter(r => r.statut === "valide").length, "validés", "ok")}
+    ${kpi(A.filter(r => r.statut === "en_attente" || r.statut === "a_verifier").length, "à traiter", "warn")}
+    ${kpi(alertes.length, "alertes (âge, doublon)", alertes.length ? "bad" : "")}
+    ${kpi(accomp, "parents accompagnants annoncés")}
+  </div>
+  <h3>Documents et paiements</h3>
+  <div class="kpis">
+    ${kpi(miss("doc_sanitaire"), "fiches sanitaires manquantes", miss("doc_sanitaire") ? "warn" : "ok")}
+    ${kpi(miss("doc_licence"), "licences / pièces d'identité manquantes", miss("doc_licence") ? "warn" : "ok")}
+    ${kpi(eur(due), "participations dues")}${kpi(eur(paid), "encaissé", "ok")}${kpi(eur(due - paid), "reste à encaisser", due - paid > 0 ? "warn" : "ok")}
+  </div>
+  <h3>Logistique</h3>
+  <div class="kpis">
+    ${kpi(`${personnes} / ${places}`, "personnes / places en véhicules", personnes > places ? "bad" : "")}
+    ${kpi(noveh, "enfants sans véhicule", noveh ? "warn" : "ok")}
+    ${kpi(`${bedsUsed()} / ${beds}`, "couchages utilisés / total")}
+    ${kpi(nolod, "enfants sans hébergement", nolod ? "warn" : "ok")}
+  </div>
+  <h3>Budget prévisionnel</h3>
+  <div class="kpis">
+    ${kpi(eur(inscr), `inscriptions (${n} × ${eur(st.tarif)})`)}${kpi(eur(transport), "transport pris en charge par le club")}
+    ${kpi(eur(inscr + transport), "dépenses prévues")}${kpi(eur(due), "recettes familles prévues")}
+    ${kpi(eur(due - inscr - transport), "solde prévisionnel avant subventions", due - inscr - transport < 0 ? "warn" : "ok")}
+  </div>
+  <h3>Rétroplanning</h3>
+  <div class="bar"><i style="width:${S.tasks.length ? Math.round(done * 100 / S.tasks.length) : 0}%"></i></div>
+  <p class="mut">${done} tâches faites sur ${S.tasks.length}${late ? ` · <b style="color:var(--bad)">${late} en retard</b>` : ""}</p>
+  ${late ? `<ul>${S.tasks.filter(lateTask).slice(0, 8).map(t => `<li>${esc(t.titre)} <span class="mut">(échéance ${esc(fdate(dueDate(t).toISOString().slice(0, 10)))})</span></li>`).join("")}</ul>` : ""}`;
+}
+function bedsUsed() { return S.lodgings.reduce((s, l) => s + bedsIn(l), 0); }
+
+/* ----- enfants ----- */
+const refOpts = (list, lab) => () => list().map(x => ({ v: x.id, l: lab(x) }));
+const FIELDS_KID = [
+  ...FIELDS_PARENT.slice(0, 7),
+  { k: "allergies", l: "Allergies / traitements", t: "textarea" },
+  { k: "regime", l: "Régime alimentaire", t: "select", o: REGIMES },
+  { k: "tee_shirt", l: "Taille tee-shirt", t: "select", o: TAILLES },
+  { k: "autorisation", l: "Autorisation parentale reçue", t: "bool" },
+  { k: "photos", l: "Droit à l'image accordé", t: "bool" },
+  { k: "engagement", l: "Engagement de paiement", t: "bool" },
+  { k: "remarques", l: "Remarques de la famille", t: "textarea" },
+  ...FIELDS_ACC,
+  { k: "statut", l: "Statut", t: "select", noblank: 1, o: Object.entries(STATUTS).map(([v, l]) => ({ v, l })) },
+  { k: "doc_sanitaire", l: "Fiche sanitaire reçue", t: "bool" },
+  { k: "doc_licence", l: "Licence / pièce d'identité vérifiée", t: "bool" },
+  { k: "montant_du", l: "Montant dû (€)", t: "number" },
+  { k: "montant_paye", l: "Montant payé (€)", t: "number" },
+  { k: "vehicule_id", l: "Véhicule", t: "select", o: refOpts(() => S.vehicles, v => `${v.code} - ${v.conducteur || "?"} (${personsIn(v)}/${v.places || "?"})`) },
+  { k: "hebergement_id", l: "Hébergement", t: "select", o: refOpts(() => S.lodgings, l => `${l.code} ${l.nom || ""} (${bedsIn(l)}/${l.couchages || "?"})`) },
+  { k: "notes_ca", l: "Notes internes CA (invisibles pour les familles)", t: "textarea" }
+];
+function kidsView() {
+  const f = S.filter, q = f.q.toLowerCase();
+  const rows = S.regs.filter(r => (!f.cat || r.categorie === f.cat) && (!f.statut || r.statut === f.statut) &&
+    (!q || `${r.nom} ${r.prenom} ${r.resp_nom}`.toLowerCase().includes(q)));
+  const veh = id => { const v = S.vehicles.find(x => x.id === id); return v ? v.code : "-"; };
+  const lod = id => { const l = S.lodgings.find(x => x.id === id); return l ? l.code : "-"; };
+  bindTab = () => {
+    $("#fq").oninput = e => { S.filter.q = e.target.value; const p = e.target.selectionStart; caRender(); const n = $("#fq"); n.focus(); n.setSelectionRange(p, p); };
+    $("#fc").onchange = e => { S.filter.cat = e.target.value; caRender(); };
+    $("#fs").onchange = e => { S.filter.statut = e.target.value; caRender(); };
+    $("#addkid").onclick = () => editKid(null);
+    $("#expkid").onclick = exportKids;
+    document.querySelectorAll("tr[data-id]").forEach(tr => tr.onclick = () => editKid(tr.dataset.id));
+  };
+  return `<div class="row" style="margin-bottom:12px">
+    <input id="fq" placeholder="Rechercher un nom…" value="${esc(f.q)}" style="max-width:240px">
+    <select id="fc" style="max-width:150px"><option value="">Catégories</option>${CATS.map(c => `<option ${f.cat === c ? "selected" : ""}>${c}</option>`).join("")}</select>
+    <select id="fs" style="max-width:170px"><option value="">Tous statuts</option>${Object.entries(STATUTS).map(([k, l]) => `<option value="${k}" ${f.statut === k ? "selected" : ""}>${l}</option>`).join("")}</select>
+    <span class="mut">${rows.length} enfant(s)</span><span style="flex:1"></span>
+    <button id="expkid" class="sec">Exporter (Excel/CSV)</button><button id="addkid">Ajouter un enfant</button></div>
+  <div class="card tw"><table><thead><tr><th>Enfant</th><th>Cat.</th><th>Statut</th><th>Responsable</th><th>Santé / régime</th><th>Docs</th><th>Reste à payer</th><th>Véh.</th><th>Héb.</th><th>Alertes</th></tr></thead><tbody>
+  ${rows.map(r => {
+    const al = alerts(r), reste = Number(r.montant_du) - Number(r.montant_paye);
+    return `<tr class="click" data-id="${r.id}"><td><b>${esc(r.nom)}</b> ${esc(r.prenom)}</td><td>${esc(r.categorie)}</td>
+    <td><span class="tag ${STATUT_CLS[r.statut]}">${STATUTS[r.statut]}</span></td>
+    <td>${esc(r.resp_nom)}<br><span class="mut">${esc(r.resp_tel)}</span></td>
+    <td>${r.allergies ? `<span class="tag bad">${esc(r.allergies)}</span>` : ""}${r.regime && r.regime !== "Standard" ? `<span class="tag warn">${esc(r.regime)}</span>` : ""}</td>
+    <td>${r.autorisation ? "" : `<span class="tag bad">autor.</span>`}${r.doc_sanitaire ? "" : `<span class="tag warn">sanit.</span>`}${r.doc_licence ? "" : `<span class="tag warn">licence</span>`}</td>
+    <td>${reste > 0 ? `<b>${eur(reste)}</b>` : `<span class="tag ok">OK</span>`}</td><td>${esc(veh(r.vehicule_id))}</td><td>${esc(lod(r.hebergement_id))}</td>
+    <td>${al.map(a => `<span class="tag bad">${a}</span>`).join("")}</td></tr>`;
+  }).join("") || `<tr><td colspan="10" class="mut">Aucun enfant.</td></tr>`}
+  </tbody></table></div>`;
+}
+function editKid(id) {
+  const r = id ? S.regs.find(x => x.id === id) : { regime: "Standard", statut: "valide", montant_du: Number(S.settings.tarif) - Number(S.settings.part_club), montant_paye: 0, autorisation: false, photos: false, engagement: false, acc_adultes: 0, acc_enfants: 0, acc_places: 0, acc_conducteur: false };
+  const link = id ? location.origin + location.pathname + "?t=" + r.token : "";
+  modal(id ? `${r.prenom} ${r.nom}` : "Nouvel enfant", `<div class="cols">${FIELDS_KID.map(f => fieldHTML(f, r[f.k])).join("")}</div>
+    ${id ? `<p class="mut">Lien famille : <code>${esc(link)}</code> <button class="sm sec" type="button" id="cl">Copier</button></p>` : ""}`,
+    async () => {
+      const p = collect(FIELDS_KID);
+      if (!p.nom || !p.prenom || !p.categorie) throw new Error("Nom, prénom et catégorie sont obligatoires.");
+      p.regime = p.regime || "Standard"; p.montant_du = p.montant_du ?? 0; p.montant_paye = p.montant_paye ?? 0; p.acc_adultes = p.acc_adultes ?? 0; p.acc_enfants = p.acc_enfants ?? 0; p.acc_places = p.acc_places ?? 0; p.updated_at = new Date().toISOString();
+      const res = id ? await sb.from("registrations").update(p).eq("id", id) : await sb.from("registrations").insert(p);
+      if (res.error) throw res.error;
+      await loadAll();
+    }, id ? async () => { if (confirm("Supprimer définitivement cette fiche ? (Préférez le statut « Désisté ».)")) { const { error } = await sb.from("registrations").delete().eq("id", id); if (error) throw error; await loadAll(); return true; } } : null);
+  const cl = $("#cl"); if (cl) cl.onclick = () => navigator.clipboard.writeText(link).then(() => cl.textContent = "Copié");
+}
+
+/* ----- CRUD générique (accompagnateurs, véhicules, hébergements, tâches) ----- */
+const yn = v => v ? "Oui" : "Non";
+const ENT = {
+  adults: { table: "adults", store: "adults", label: "accompagnateur", sort: "nom",
+    fields: () => [
+      { k: "nom", l: "Nom", t: "text" }, { k: "prenom", l: "Prénom", t: "text" },
+      { k: "role", l: "Rôle", t: "select", o: ROLES, noblank: 1 }, { k: "categorie", l: "Catégorie suivie", t: "select", o: [...CATS, "Toutes"] },
+      { k: "tel", l: "Téléphone", t: "tel" }, { k: "email", l: "E-mail", t: "email" },
+      { k: "presence", l: "Présence confirmée", t: "bool" }, { k: "nb_adultes", l: "Nombre d'adultes", t: "number", min: 0 }, { k: "nb_enfants", l: "Enfants non joueurs", t: "number", min: 0 },
+      { k: "conducteur", l: "Conducteur", t: "bool" },
+      { k: "vehicule_id", l: "Véhicule", t: "select", o: refOpts(() => S.vehicles, v => `${v.code} - ${v.conducteur || "?"}`) },
+      { k: "hebergement_id", l: "Hébergement tournoi (coachs)", t: "select", o: refOpts(() => S.lodgings, l => `${l.code} ${l.nom || ""}`) },
+      { k: "secourisme", l: "Secourisme (PSC1…)", t: "text" }, { k: "remarques", l: "Remarques", t: "textarea" }],
+    cols: [["Nom", r => `<b>${esc(r.nom)}</b> ${esc(r.prenom)}`], ["Rôle", r => esc(r.role)], ["Cat.", r => esc(r.categorie)], ["Contact", r => esc(r.tel) + "<br>" + esc(r.email)],
+      ["Présent", r => `<span class="tag ${r.presence ? "ok" : "warn"}">${yn(r.presence)}</span>`], ["Adultes/enf.", r => `${r.nb_adultes}/${r.nb_enfants}`], ["Cond.", r => yn(r.conducteur)],
+      ["Véh.", r => { const v = S.vehicles.find(x => x.id === r.vehicule_id); return v ? v.code : "-"; }]],
+    blank: { role: "Parent", nb_adultes: 1, nb_enfants: 0, presence: false, conducteur: false } },
+  veh: { table: "vehicles", store: "vehicles", label: "véhicule", sort: "code",
+    fields: () => [{ k: "code", l: "ID (V1, V2…)", t: "text" }, { k: "type", l: "Type de véhicule", t: "text" }, { k: "conducteur", l: "Conducteur", t: "text" }, { k: "places", l: "Places (conducteur inclus)", t: "number", min: 0 },
+      { k: "depart", l: "Départ (lieu / heure)", t: "text" }, { k: "km_ar", l: "Km aller-retour", t: "number" }, { k: "conso", l: "Conso (L/100 km)", t: "number" }, { k: "prix_carburant", l: "Prix carburant (€/L)", t: "number" },
+      { k: "peages", l: "Péages A/R (€)", t: "number" }, { k: "pont", l: "Pont de l'île de Ré (€)", t: "number" }, { k: "location", l: "Location du véhicule (€)", t: "number" },
+      { k: "pris_en_charge", l: "Pris en charge par", t: "select", o: ["Club", "Conducteur", "Partagé"], noblank: 1 }, { k: "remarques", l: "Remarques", t: "textarea" }],
+    cols: [["ID", r => `<b>${esc(r.code)}</b>`], ["Type", r => esc(r.type)], ["Conducteur", r => esc(r.conducteur)], ["Départ", r => esc(r.depart)],
+      ["Occupation", r => { const n = personsIn(r); return `<span class="tag ${n > (r.places || 0) ? "bad" : "ok"}">${n} / ${r.places ?? "?"}</span>`; }],
+      ["Coût estimé", r => eur(vehCost(r))], ["Payé par", r => esc(r.pris_en_charge)]],
+    blank: { pris_en_charge: "Club" } },
+  lod: { table: "lodgings", store: "lodgings", label: "hébergement", sort: "code",
+    fields: () => [{ k: "code", l: "ID (H1, H2…)", t: "text" }, { k: "nom", l: "Logement (chambre, mobil-home, dortoir…)", t: "text" }, { k: "adresse", l: "Lieu / adresse", t: "text" },
+      { k: "couchages", l: "Couchages", t: "number", min: 0 }, { k: "referent", l: "Adulte référent", t: "text" }, { k: "remarques", l: "Remarques", t: "textarea" }],
+    cols: [["ID", r => `<b>${esc(r.code)}</b>`], ["Logement", r => esc(r.nom)], ["Adresse", r => esc(r.adresse)], ["Référent", r => esc(r.referent)],
+      ["Occupation", r => { const n = bedsIn(r); return `<span class="tag ${n > (r.couchages || 0) ? "bad" : "ok"}">${n} / ${r.couchages ?? "?"}</span>`; }]],
+    blank: {} },
+  tasks: { table: "tasks", store: "tasks", label: "tâche", sort: "jours_avant",
+    fields: () => [{ k: "theme", l: "Thème", t: "text" }, { k: "titre", l: "Tâche", t: "text" }, { k: "jours_avant", l: "Jours avant le départ (J-)", t: "number" },
+      { k: "responsable", l: "Responsable", t: "text" }, { k: "statut", l: "Statut", t: "select", o: ["À faire", "En cours", "Fait"], noblank: 1 }, { k: "remarques", l: "Remarques", t: "textarea" }],
+    cols: [["Thème", r => esc(r.theme)], ["Tâche", r => esc(r.titre)], ["Échéance", r => { const d = dueDate(r); return d ? `<span class="${lateTask(r) ? "tag bad" : ""}">${esc(d.toLocaleDateString("fr-FR"))}</span>` : ""; }],
+      ["Responsable", r => esc(r.responsable)], ["Statut", r => `<span class="tag ${r.statut === "Fait" ? "ok" : r.statut === "En cours" ? "warn" : ""}">${esc(r.statut)}</span>`]],
+    blank: { statut: "À faire" } }
+};
+function listView(key, intro = "") {
+  const e = ENT[key], rows = S[e.store];
+  bindTab = () => {
+    $("#addent").onclick = () => editEnt(key, null);
+    document.querySelectorAll("tr[data-id]").forEach(tr => tr.onclick = () => editEnt(key, tr.dataset.id));
+  };
+  return `${intro}<div class="row end" style="margin-bottom:12px"><button id="addent">Ajouter : ${e.label}</button></div>
+  <div class="card tw"><table><thead><tr>${e.cols.map(c => `<th>${c[0]}</th>`).join("")}</tr></thead><tbody>
+  ${rows.map(r => `<tr class="click" data-id="${r.id}">${e.cols.map(c => `<td>${c[1](r)}</td>`).join("")}</tr>`).join("") || `<tr><td colspan="${e.cols.length}" class="mut">Rien pour l'instant.</td></tr>`}
+  </tbody></table></div>`;
+}
+function editEnt(key, id) {
+  const e = ENT[key], r = id ? S[e.store].find(x => x.id === id) : { ...e.blank }, fields = e.fields();
+  modal(id ? "Modifier" : "Ajouter : " + e.label, `<div class="cols">${fields.map(f => fieldHTML(f, r[f.k])).join("")}</div>`, async () => {
+    const p = collect(fields);
+    const req = fields[0].k === "theme" ? "titre" : fields[0].k;
+    if (!p[req]) throw new Error("Le champ « " + (fields.find(f => f.k === req).l) + " » est obligatoire.");
+    if (key === "adults") { p.nb_adultes = p.nb_adultes ?? 1; p.nb_enfants = p.nb_enfants ?? 0; }
+    const res = id ? await sb.from(e.table).update(p).eq("id", id) : await sb.from(e.table).insert(p);
+    if (res.error) throw res.error;
+    await loadAll();
+  }, id ? async () => { if (confirm("Supprimer cet élément ?")) { const { error } = await sb.from(e.table).delete().eq("id", id); if (error) throw error; await loadAll(); return true; } } : null);
+}
+const adultsView = () => listView("adults", `<p class="mut">Éducateurs, dirigeants et parents accompagnants (un foyer par ligne). Les parents annoncés dans les fiches enfants sont comptés séparément dans le tableau de bord.</p>`);
+const vehView = () => listView("veh", `<p class="mut">L'occupation compte les enfants affectés, plus les adultes et enfants non joueurs des accompagnateurs « présents ». Affectez un véhicule dans la fiche de chaque enfant.</p>`);
+const lodView = () => listView("lod", `<p class="mut">Hébergement fourni par le tournoi (enfants et coachs). Le comparatif des campings pour les parents est dans votre fichier Excel d'hébergement.</p>`);
+const tasksView = () => listView("tasks", `<p class="mut">Échéance = date de départ moins J-. Les tâches non faites dont l'échéance est passée sont signalées en rouge.</p>`);
+
+/* ----- échanges ----- */
+function msgView() {
+  const sujets = [...new Set(S.messages.map(m => m.sujet))];
+  const list = S.messages.filter(m => !S.msgSujet || m.sujet === S.msgSujet);
+  bindTab = () => {
+    $("#ms").onchange = e => { S.msgSujet = e.target.value; caRender(); };
+    $("#mf").onsubmit = async ev => {
+      ev.preventDefault();
+      const corps = $("#mb").value.trim(); if (!corps) return;
+      const me = S.members.find(m => m.email.toLowerCase() === S.me.toLowerCase());
+      const { error } = await sb.from("messages").insert({ sujet: $("#mj").value.trim() || "Général", corps, auteur_nom: me && me.nom || S.me });
+      if (error) return alert(error.message);
+      await refreshMessages();
+    };
+    $("#mr").onclick = refreshMessages;
+  };
+  return `<div class="card"><form id="mf"><div class="cols"><div><label for="mj">Sujet</label><input id="mj" list="sj" placeholder="Général" value="${esc(S.msgSujet)}"><datalist id="sj">${sujets.map(s => `<option value="${esc(s)}">`).join("")}</datalist></div></div>
+    <label for="mb">Message pour le CA</label><textarea id="mb" required></textarea><p><button>Publier</button></p></form></div>
+  <div class="row" style="margin-bottom:8px"><select id="ms" style="max-width:240px"><option value="">Tous les sujets</option>${sujets.map(s => `<option ${S.msgSujet === s ? "selected" : ""}>${esc(s)}</option>`).join("")}</select><button class="sec sm" id="mr">Actualiser</button>
+  <span class="mut">Mise à jour automatique toutes les 30 secondes.</span></div>
+  <div class="card">${list.map(m => `<div class="msgbox"><b>${esc(m.auteur_nom || m.auteur_email)}</b> <span class="tag">${esc(m.sujet)}</span> <span class="mut">${esc(fdt(m.created_at))}</span><div>${esc(m.corps).replace(/\n/g, "<br>")}</div></div>`).join("") || `<p class="mut">Aucun message.</p>`}</div>`;
+}
+
+/* ----- réglages ----- */
+function setView() {
+  const st = S.settings;
+  bindTab = () => {
+    $("#sf").onsubmit = async ev => {
+      ev.preventDefault();
+      const p = collect(SET_FIELDS); p.inscriptions_ouvertes = $("#f_inscriptions_ouvertes").checked;
+      const { error } = await sb.from("settings").update(p).eq("id", 1);
+      if (error) return alert(error.message);
+      await loadAll(); $("#smsg").innerHTML = notice("okk", "Réglages enregistrés.");
+    };
+    const add = $("#addm"); if (add) add.onclick = async () => {
+      const email = $("#mem").value.trim().toLowerCase(); if (!email) return;
+      const { error } = await sb.from("ca_members").insert({ email, nom: $("#mnm").value.trim() || null, is_admin: $("#mad").checked });
+      if (error) return alert(error.message);
+      const { data } = await sb.from("ca_members").select("*").order("nom"); S.members = data; caRender();
+    };
+    document.querySelectorAll("[data-del]").forEach(b => b.onclick = async () => {
+      if (!confirm("Retirer ce membre du CA ?")) return;
+      const { error } = await sb.from("ca_members").delete().eq("email", b.dataset.del);
+      if (error) return alert(error.message);
+      const { data } = await sb.from("ca_members").select("*").order("nom"); S.members = data; caRender();
+    });
+    $("#exa").onclick = exportKids;
+  };
+  return `<div class="card"><h2>Paramètres du déplacement</h2>${S.isAdmin ? "" : notice("info", "Seuls les administrateurs peuvent modifier ces réglages.")}
+  <form id="sf"><fieldset ${S.isAdmin ? "" : "disabled"} style="border:0;padding:0;margin:0"><div class="cols">${SET_FIELDS.map(f => fieldHTML(f, st[f.k])).join("")}</div>
+  <label class="chk"><input type="checkbox" id="f_inscriptions_ouvertes" ${st.inscriptions_ouvertes ? "checked" : ""}> <span>Inscriptions ouvertes au public</span></label>
+  <div id="smsg"></div><p><button>Enregistrer</button></p></fieldset></form></div>
+  <div class="card"><h2>Membres du CA</h2>
+  <table><thead><tr><th>E-mail</th><th>Nom</th><th>Admin</th><th></th></tr></thead><tbody>${S.members.map(m => `<tr><td>${esc(m.email)}</td><td>${esc(m.nom)}</td><td>${yn(m.is_admin)}</td><td>${S.isAdmin && m.email.toLowerCase() !== S.me.toLowerCase() ? `<button class="sm danger" data-del="${esc(m.email)}">Retirer</button>` : ""}</td></tr>`).join("")}</tbody></table>
+  ${S.isAdmin ? `<h3>Ajouter un membre</h3><div class="row"><input id="mem" type="email" placeholder="e-mail" style="max-width:240px"><input id="mnm" placeholder="Nom" style="max-width:180px"><label class="chk" style="margin:0"><input type="checkbox" id="mad"> admin</label><button id="addm">Ajouter</button></div>
+  <p class="mut">Le membre se connecte ensuite avec cette adresse sur la page « Espace CA ».</p>` : ""}</div>
+  <div class="card"><h2>Exports</h2><button id="exa" class="sec">Télécharger la liste des enfants (CSV pour Excel)</button></div>`;
+}
+const SET_FIELDS = [
+  { k: "tournoi", l: "Intitulé du tournoi", t: "text" }, { k: "lieu", l: "Lieu", t: "text" }, { k: "organisateur", l: "Organisateur", t: "text" },
+  { k: "contact_club", l: "Contact affiché aux familles (e-mail / tél.)", t: "text" },
+  { k: "date_depart", l: "Date de départ", t: "date" }, { k: "date_retour", l: "Date de retour", t: "date" }, { k: "date_limite", l: "Date limite d'inscription", t: "date" },
+  { k: "tarif", l: "Inscription au tournoi par enfant (€)", t: "number" }, { k: "part_club", l: "Part prise en charge par le club (€)", t: "number" },
+  { k: "saison", l: "Saison (année de fin) pour le contrôle d'âge", t: "number" }, { k: "message_accueil", l: "Message d'accueil", t: "textarea" }
+];
+
+/* ============================ export CSV ============================ */
+function exportKids() {
+  const head = ["Nom", "Prénom", "Catégorie", "Date de naissance", "Statut", "Responsable", "Téléphone", "E-mail", "Allergies", "Régime", "Tee-shirt", "Autorisation", "Fiche sanitaire", "Licence", "Dû", "Payé", "Reste", "Véhicule", "Hébergement", "Parents accompagnants", "Autres enfants", "Remarques", "Notes CA"];
+  const rows = S.regs.map(r => {
+    const v = S.vehicles.find(x => x.id === r.vehicule_id), l = S.lodgings.find(x => x.id === r.hebergement_id);
+    return [r.nom, r.prenom, r.categorie, r.date_naissance, STATUTS[r.statut], r.resp_nom, r.resp_tel, r.resp_email, r.allergies, r.regime, r.tee_shirt, yn(r.autorisation), yn(r.doc_sanitaire), yn(r.doc_licence), r.montant_du, r.montant_paye, Number(r.montant_du) - Number(r.montant_paye), v && v.code, l && l.code, r.acc_adultes, r.acc_enfants, r.remarques, r.notes_ca];
+  });
+  const csv = [head, ...rows].map(row => row.map(c => `"${String(c ?? "").replace(/"/g, '""')}"`).join(";")).join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" }));
+  a.download = "enfants_ile_de_re.csv"; document.body.appendChild(a); a.click(); a.remove();
+}
+
+/* ============================ fenêtre modale ============================ */
+function modal(title, body, onSave, onDelete) {
+  const bg = document.createElement("div"); bg.className = "modal-bg";
+  bg.innerHTML = `<div class="modal" role="dialog" aria-modal="true"><h2>${esc(title)}</h2><form>${body}<div id="mm"></div>
+    <div class="row end" style="margin-top:12px">${onDelete ? `<button type="button" class="danger" id="md" style="margin-right:auto">Supprimer</button>` : ""}<button type="button" class="sec" id="mc">Annuler</button><button type="submit">Enregistrer</button></div></form></div>`;
+  document.body.appendChild(bg);
+  const close = () => bg.remove();
+  bg.querySelector("#mc").onclick = close;
+  bg.addEventListener("mousedown", e => { if (e.target === bg) close(); });
+  bg.querySelector("form").onsubmit = async ev => {
+    ev.preventDefault();
+    try { await onSave(); close(); caRender(); } catch (e) { bg.querySelector("#mm").innerHTML = notice("err", esc(e.message || e)); }
+  };
+  const md = bg.querySelector("#md");
+  if (md) md.onclick = async () => { try { if (await onDelete()) { close(); caRender(); } } catch (e) { bg.querySelector("#mm").innerHTML = notice("err", esc(e.message || e)); } };
+}
+
+start();
+</script>
+</body>
+</html>
